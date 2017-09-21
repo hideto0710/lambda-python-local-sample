@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Main:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.handler
+      Runtime: python3.6
+  ApiGet:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.get
+      Runtime: python3.6
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+  ApiCreateTable:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.create
+      Runtime: python3.6
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /tables
+            Method: post
